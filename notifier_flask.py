@@ -2,7 +2,7 @@ import re
 from flask import Flask
 from flask import request
 from pymongo import MongoClient
-from dispatch import send_email
+from dispatch import send_email_notify, send_email_confirmation
 
 ERROR_400 = 400
 
@@ -41,6 +41,7 @@ def store_notification_waiter():
     }
     db_emails = db['emails']
     db_emails.insert_one(email_obj)
+    send_email_confirmation(email_address, contract)
 
     return 'Success! Will notify the user when the data is ready '
 
@@ -65,7 +66,7 @@ def notify_waiter():
             {'contract': contract, 'variable': variable})]
     db['emails'].delete_many({'contract': contract, 'variable': variable})
 
-    send_email(email_addresses, contract, variable)
+    send_email_notify(email_addresses, contract, variable)
 
     return 'Success! The user has been notified'
 
