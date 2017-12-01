@@ -47,14 +47,15 @@ def store_notification_waiter():
 
 @app.route('/notify', methods=['POST'])
 def notify_waiter():
-    if 'contract' not in request.args.keys():
+    data = request.get_json()
+    if 'contract' not in data:
         return 'No contract address provided', ERROR_400
 
-    if 'variable' not in request.args.keys():
+    if 'variable' not in data:
         return 'No variable provided', ERROR_400
 
-    contract = request.args.get('contract')
-    variable = request.args.get('variable')
+    contract = data['contract']
+    variable = data['variable']
 
     # Get and remove emails stored in database which are awaiting the data for
     # the variable for this contract

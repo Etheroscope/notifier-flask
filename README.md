@@ -21,7 +21,7 @@ To store a new subscriber's email address.
 ### POST */notify*
 To send an email notification to all subscribers to a given variable.
 
-**Request body** *(application/x-www-form-urlencoded)*
+**Request body** *(application/json)*
 
 | Argument | Value | Example | Required? |
 | -------- | ----- | ------- | --------- |
