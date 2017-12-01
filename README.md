@@ -7,7 +7,7 @@ MongoDB is used to store email addresses and subscriptions.
 
 ## API
 
-### POST */store*
+### PUT */store*
 To store a new subscriber's email address.
 
 **Request body** *(application/x-www-form-urlencoded)*
